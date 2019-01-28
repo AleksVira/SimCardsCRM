@@ -1,3 +1,5 @@
+package repository;
+
 import java.util.Date;
 
 public class SimCard {
@@ -23,7 +25,7 @@ public class SimCard {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    private void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -39,7 +41,7 @@ public class SimCard {
         return operatorName;
     }
 
-    public void setOperatorName(String operatorName) {
+    private void setOperatorName(String operatorName) {
         this.operatorName = operatorName;
     }
 
@@ -85,52 +87,52 @@ public class SimCard {
         private String tariffName;
         private Date lastUsedDate;
 
-        Builder() {
+        public Builder() {
         }
 
-        Builder phoneNumber(String val) {
+        public Builder phoneNumber(String val) {
             phoneNumber = val;
             return this;
         }
 
-        Builder nickName(String val) {
+        public Builder nickName(String val) {
             nickName = val;
             return this;
         }
 
-        Builder operatorName(String val) {
+        public Builder operatorName(String val) {
             operatorName = val;
             return this;
         }
 
-        Builder ownerName(String val) {
+        public Builder ownerName(String val) {
             ownerName = val;
             return this;
         }
 
-        Builder balance(double val) {
+        public Builder balance(double val) {
             balance = val;
             return this;
         }
 
-        Builder tariffName(String val) {
+        public Builder tariffName(String val) {
             tariffName = val;
             return this;
         }
 
-        Builder lastUsedDate(Date val) {
+        public Builder lastUsedDate(Date val) {
             lastUsedDate = val;
             return this;
         }
 
-        SimCard build() {
+        public SimCard build() {
             return new SimCard(this);
         }
     }
 
     @Override
     public String toString() {
-        return "SimCard{" +
+        return "repository.SimCard{" +
                 "phoneNumber='" + phoneNumber + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", operatorName='" + operatorName + '\'' +
