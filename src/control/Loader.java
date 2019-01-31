@@ -1,6 +1,8 @@
 package control;
 
+import notifications.NotificationManager;
 import repository.SimCard;
+import repository.SimCardRepository;
 
 import java.util.Date;
 
@@ -15,6 +17,22 @@ public class Loader {
 
         double currentBalance = new BalanceChecker(testCard).checkBalance();
         System.out.println("Баланс равен: " + currentBalance);
+
+
+        Agent agent = new Agent();
+        SimCardRepository repository = new SimCardRepository();
+        repository.addSim(testCard);
+        agent.attach(repository);
+
+        NotificationManager manager = new NotificationManager(agent.startSimCheck());
+        agent.attach(manager);
+
+
+        System.out.println("Баланс был равен: " + testCard.getBalance());
+
+        agent.createReactivationReport(testCard);
+
+        System.out.println("Теперь баланс равен: " + repository.findSimByPhoneNumber(testCard.getPhoneNumber()).getBalance());
 
     }
 }

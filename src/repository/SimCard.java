@@ -21,6 +21,18 @@ public class SimCard {
         setLastUsedDate(builder.lastUsedDate);
     }
 
+    public static SimCard deepCopy(SimCard oldSim) {
+        return new Builder()
+                .phoneNumber(oldSim.phoneNumber)
+                .nickName(oldSim.nickName)
+                .operatorName(oldSim.operatorName)
+                .ownerName(oldSim.ownerName)
+                .balance(oldSim.balance)
+                .tariffName(oldSim.tariffName)
+                .lastUsedDate(oldSim.lastUsedDate)
+                .build();
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
