@@ -1,8 +1,7 @@
 package control;
 
 import notifications.NotificationManager;
-import repository.SimCard;
-import repository.SimCardRepository;
+import repository.*;
 
 import java.util.Date;
 
@@ -24,8 +23,8 @@ public class Loader {
         repository.addSim(testCard);
         agent.attach(repository);
 
-        NotificationManager manager = new NotificationManager(agent.startSimCheck());
-        agent.attach(manager);
+        NotificationManager notificationManager = new NotificationManager(agent.startSimCheck());
+        agent.attach(notificationManager);
 
 
         System.out.println("Баланс был равен: " + testCard.getBalance());
@@ -33,6 +32,22 @@ public class Loader {
         agent.createReactivationReport(testCard);
 
         System.out.println("Теперь баланс равен: " + repository.findSimByPhoneNumber(testCard.getPhoneNumber()).getBalance());
+
+
+        System.out.println("--------------------------------------\n");
+
+        DbManager dbManager = new ConcreteDbManager();
+        SimCard readCard = dbManager.readRecordByPhoneNumber("8913-335-0797");
+        System.out.println(readCard.toString());
+
+        System.out.println("--------------------------------------\n");
+
+        SimIdentityMap simMap = new SimIdentityMap();
+        SimCard sim2 = simMap.readSimFromMapByPhone("8983-158-6696");
+        System.out.println(sim2.toString());
+
+
+
 
     }
 }
