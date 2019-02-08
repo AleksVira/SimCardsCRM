@@ -11,6 +11,7 @@ import utils.StringUtils;
 
 public class Controller {
 
+
     private Model model;
     private boolean waitNew;
 
@@ -32,7 +33,7 @@ public class Controller {
     private TextField tfLastDate;
 
     @FXML
-    private Button btnAddNew;
+    public Button btnAddNew;
     @FXML
     private Button btnSave;
     @FXML
