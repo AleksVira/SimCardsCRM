@@ -4,6 +4,7 @@ import control.Agent;
 import control.MyObserver;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SimCardRepository implements MyObserver {
     ArrayList<SimCard> repository = new ArrayList<>();

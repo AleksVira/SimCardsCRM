@@ -1,5 +1,7 @@
-package control;
+package loader;
 
+import control.Agent;
+import control.BalanceChecker;
 import notifications.NotificationManager;
 import repository.*;
 
@@ -7,7 +9,7 @@ import java.util.Date;
 
 import static utils.MobileConstantsRussian.*;
 
-public class Loader {
+public class GodApp {
     public static void main(String[] args) {
         System.out.println("Hello, Sim!");
         SimCard testCard = new SimCard.Builder().phoneNumber("+79281800000").nickName("18-01").operatorName(OPERATOR_NAME_MEGAFON).ownerName("Алекс").balance(100.0).tariffName("Страна").lastUsedDate(new Date()).build();
@@ -48,6 +50,9 @@ public class Loader {
 
 
 
+        GuiLoader gui = new GuiLoader();
+        gui.start(args);
 
     }
+
 }

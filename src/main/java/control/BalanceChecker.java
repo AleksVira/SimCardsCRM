@@ -5,17 +5,17 @@ import utils.UssdParser;
 
 import static utils.MobileConstantsRussian.*;
 
-class BalanceChecker {
+public class BalanceChecker {
 
     private SimCard simCard;
 
 
-    BalanceChecker(SimCard simCard) {
+    public BalanceChecker(SimCard simCard) {
         this.simCard = simCard;
     }
 
 
-    double checkBalance() {
+    public double checkBalance() {
         double result = -Double.MAX_VALUE;
         PhoneManager phoneManager = new PhoneManager();
         String phoneAnswer;

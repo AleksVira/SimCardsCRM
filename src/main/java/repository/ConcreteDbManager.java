@@ -4,6 +4,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class ConcreteDbManager implements DbManager {
 
@@ -146,4 +147,35 @@ public class ConcreteDbManager implements DbManager {
         //Методы аналогичны, допишу
         return false;
     }
+
+
+    SimCard getRandomSim() {
+        String sql = "SELECT * FROM simcards WHERE rowid = abs(random()) % (SELECT max(rowid) FROM simcards) + 1";
+        try (Connection connection = this.connection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String phoneNumber = rs.getString("phone_number");
+                String nickName = rs.getString("nickname");
+                String operatorName = rs.getString("operator_name");
+                String ownerName = rs.getString("owner_name");
+                double balance = rs.getDouble("balance");
+                String tariffName = rs.getString("tariff_name");
+                int lastUsedDate = rs.getInt("last_used_date");
+                SimCard myCard = new SimCard.Builder().phoneNumber(phoneNumber).
+                        nickName(nickName).operatorName(operatorName).
+                        ownerName(ownerName).balance(balance).
+                        tariffName(tariffName).lastUsedDate(intToDataConverter(lastUsedDate)).build();
+                return myCard;
+            } else {
+                System.out.println("Не нашел записи в БД");
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
 }

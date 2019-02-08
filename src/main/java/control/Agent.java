@@ -32,13 +32,13 @@ public class Agent {
     }
 
 
-    ArrayList<SimCard> startSimCheck() {
+    public ArrayList<SimCard> startSimCheck() {
         ArrayList<SimCard> needActionList = new ArrayList<>();
         // Обращается к базе и проверяет кого пора реактивировать.
         return needActionList;
     }
 
-    SimCard createReactivationReport(SimCard simCard) {
+    public SimCard createReactivationReport(SimCard simCard) {
         SimCard updatedSim = SimCard.deepCopy(simCard);
         updatedSim.setBalance(updatedSim.getBalance() - 1);
         updatedSim.setLastUsedDate(new Date());
